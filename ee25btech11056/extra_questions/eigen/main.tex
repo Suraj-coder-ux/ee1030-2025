@@ -263,13 +263,27 @@ Since $\vec{v}^* \vec{A} \vec{v}$ may be complex, $\lambda$ may also be complex.
 
 \textbf{Eigenvectors corresponding to distinct eigenvalues need not be orthogonal}
 
-For complex symmetric matrices, we have only $\vec{A} = \vec{A}^\top$, so the Hermitian symme
-try property does not hold.
+For complex symmetric matrices, we have only $\vec{A} = \vec{A}^\top$, so the Hermitian symmetry property does not hold.
 
 Thus, for two eigenpairs $(\lambda_1, \vec{v}_1)$ and $(\lambda_2, \vec{v}_2)$ with $\lambda_1 \ne \lambda_2$, we \textbf{cannot guarantee}
 \begin{align}
 \vec{v}_1^* \vec{v}_2 = 0
 \end{align}
+
+Let
+
+\begin{align}
+\vec{A}\vec{v_1} = \alpha \vec{v_1}\\
+\vec{A}\vec{v_2} = \beta \vec{v_2}
+\end{align}
+
+Where $\alpha \ne \beta$ are distinct eigenvalues.Multiplying the first equation on the left by $\vec{v_2}^*$:
+
+\begin{align}
+\vec{v_2}^* \vec{A} \vec{v_1} = \alpha \vec{v_2}^* \vec{v_1}
+\end{align}
+
+As $\vec{A} \neq \vec{A}^*$ and also $\vec{A} \neq \bar{\vec{A}}$ we cannot proceed like what we had done earlier for \textbf{case 1}.
 
 Hence, eigenvectors corresponding to distinct eigenvalues \textbf{need not be orthogonal and are not guaranteed to be real}.
 
@@ -284,9 +298,9 @@ But if $\vec{A} = \vec{A}^*$ then we get the same result as \textbf{case 1}
 
 \pagebreak
 
-\textbf{Examples to Support the Proof}
+\textbf{Examples to Support the Proof} 
 
-\textbf{Example 1 : Real Symmetric Matrix}
+\textbf{Example 1 : Real and Symmetric Matrix }
 
 (\textbf{a}) Let
 \begin{align}
@@ -305,28 +319,26 @@ The characteristic equation is:
 Substituting $\vec{A}$,
 \begin{align}
 \mydet{
-\myvec{
 2-\lambda & -1 & 0\\
 -1 & 2-\lambda & -1\\
 0 & -1 & 2-\lambda
-}
-} = 0
+}= 0
 \end{align}
 
 \begin{align}
-\myvec{
+\mydet{
 2-\lambda & -1 & 0\\
 -1 & 2-\lambda & -1\\
 0 & -1 & 2-\lambda
 }
 \xleftrightarrow{R_2 \to R_2 + \frac{1}{2-\lambda}R_1}
-\myvec{
+\mydet{
 2-\lambda & -1 & 0\\
 0 & \frac{(2-\lambda)^2 - 1}{2-\lambda} & -1\\
 0 & -1 & 2-\lambda
 }
 \xleftrightarrow{R_3 \to R_3 + \frac{(2-\lambda)}{(2-\lambda)^2 - 1}R_2}
-\myvec{
+\mydet{
 2-\lambda & -1 & 0\\
 0 & \frac{(2-\lambda)^2 - 1}{2-\lambda} & -1\\
 0 & 0 & \frac{(2-\lambda)^3 - 4(2-\lambda)}{(2-\lambda)^2 - 1}
@@ -349,15 +361,42 @@ Hence, the eigenvalues are:
 
 All eigenvalues are real, confirming positive definiteness.\\
 
-\textbf{Eigenvectors:}
-Solving $(\vec{A}-\lambda_i\vec{I})\vec{v}_i=0$ gives:
+\textbf{Finding Eigenvectors}
+
+\textbf{For } $\lambda_1 = 2$:
 \begin{align}
-\vec{v}_1 = \myvec{1\\0\\-1},\ 
-\vec{v}_2 = \myvec{1\\\sqrt{2}\\1},\ 
-\vec{v}_3 = \myvec{1\\-\sqrt{2}\\1}
+(\vec{A}-2\vec{I})\vec{v} &= 0\\
+\myvec{0 & -1 & 0\\ -1 & 0 & -1\\ 0 & -1 & 0}\myvec{x\\y\\z} &= \myvec{0\\0\\0}
+\end{align}
+\begin{align}
+\myaugvec{3}{0 & -1 & 0 & 0\\ -1 & 0 & -1 & 0\\ 0 & -1 & 0 & 0}
+\xleftrightarrow{R_2 \leftrightarrow R_1}
+\myaugvec{3}{-1 & 0 & -1 & 0\\ 0 & -1 & 0 & 0\\ 0 & -1 & 0 & 0}
+\xleftrightarrow{R_3 \to R_3 - R_2}
+\myaugvec{3}{-1 & 0 & -1 & 0\\ 0 & -1 & 0 & 0\\ 0 & 0 & 0 & 0}
+\end{align}
+Hence, $x = -z,\ y = 0 \Rightarrow \vec{v}_1 = \myvec{1\\0\\-1}$.
+
+\textbf{For } $\lambda_2 = 2+\sqrt{2}$:
+\begin{align}
+(\vec{A}-(2+\sqrt{2})\vec{I})\vec{v}=0\\
+\myvec{-\sqrt{2} & -1 & 0\\ -1 & -\sqrt{2} & -1\\ 0 & -1 & -\sqrt{2}}\myvec{x\\y\\z} = \myvec{0\\0\\0}
+\end{align}
+\begin{align}
+\myaugvec{3}{-\sqrt{2} & -1 & 0 & 0\\ -1 & -\sqrt{2} & -1 & 0\\ 0 & -1 & -\sqrt{2} & 0}
+\xleftrightarrow{R_2 \to R_2 - \frac{1}{\sqrt{2}}R_1}
+\myaugvec{3}{-\sqrt{2} & -1 & 0 & 0\\ 0 & -\frac{1}{\sqrt{2}} & -1 & 0\\ 0 & -1 & -\sqrt{2} & 0}
+\xleftrightarrow{R_3 \to R_3 -\sqrt{2}R_2}
+\myaugvec{3}{-\sqrt{2} & -1 & 0 & 0\\ 0 & -\frac{1}{\sqrt{2}} & -1 & 0\\ 0 & 0 & 0 & 0}
 \end{align}
 
-Thus, eigenvectors are real and mutually orthogonal.
+Simplifying gives proportional relation $y = -\sqrt{2}x, \ z = x$.
+Hence $\vec{v}_2 = \myvec{1\\-\sqrt{2}\\1}$.
+
+\textbf{For } $\lambda_3 = 2-\sqrt{2}$:
+Similarly, solving gives $\vec{v}_3 = \myvec{1\\\sqrt{2}\\1}$.
+
+Thus, eigenvectors are \textbf{real and mutually orthogonal}.
 
 \pagebreak
 
@@ -378,10 +417,8 @@ Here, $\vec{A} = \vec{A}^\top$ but $\vec{A} \ne \vec{A}^*$, so $\vec{A}$ is comp
 
 \begin{align}
 \mydet{
-\myvec{
 1-\lambda & 1+i\\
 1+i & 1-\lambda
-}
 } = 0
 \end{align}
 
@@ -414,27 +451,38 @@ Hence eigenvalues are:
 \lambda_1 = 1 - \sqrt{2i}, \quad \lambda_2 = 1 + \sqrt{2i}
 \end{align}
 
-\textbf{Eigenvectors:}
+\textbf{Finding Eigenvectors}
 
-\textbf{Eigenvalue } \(\lambda_1 = 1 - \sqrt{2i}\):
-
+\textbf{For } $\lambda_1 = 1 - \sqrt{2i}$:
 \begin{align}
-\vec{v}_1 = \myvec{1\\ -\,\frac{\sqrt{2i}}{1+i}}
+(\vec{A}-\lambda_1 \vec{I})\vec{v}=0\\
+\myvec{\sqrt{2i} & 1+i\\ 1+i & \sqrt{2i}}\myvec{x\\y}=\myvec{0\\0}
 \end{align}
-
-\textbf{Eigenvalue } \(\lambda_2 = 1 + \sqrt{2i}\):
-
 \begin{align}
-\vec{v}_2 = \myvec{1\\ \frac{\sqrt{2i}}{1+i}}
+  \myaugvec{2}{\sqrt{2i} & 1+i & 0\\ 1+i & \sqrt{2i} & 0}
+\xleftrightarrow{R_2 \to R_2 - \frac{1+i}{\sqrt{2i}}R_1}
+  \myaugvec{2}{\sqrt{2i} & 1+i & 0\\ 0 & 0 & 0}
 \end{align}
+Hence $y = -\frac{\sqrt{2i}}{1+i}x$ and $\vec{v}_1 = \myvec{1\\ -\frac{\sqrt{2i}}{1+i}}$.
 
-\textbf{Summary:}
+\textbf{For } $\lambda_2 = 1 + \sqrt{2i}$:
+\begin{align}
+(\vec{A}-\lambda_2 \vec{I})\vec{v}=0\\
+\myvec{-\sqrt{2i} & 1+i\\ 1+i & -\sqrt{2i}}\myvec{x\\y}=\myvec{0\\0}
+\end{align}
+\begin{align}
+  \myaugvec{2}{-\sqrt{2i} & 1+i & 0\\ 1+i & -\sqrt{2i} & 0}
+\xleftrightarrow{R_2 \to R_2 - \frac{1+i}{-\sqrt{2i}}R_1}
+  \myaugvec{2}{-\sqrt{2i} & 1+i & 0\\ 0 & 0 & 0}
+\end{align}
+Hence $y = \frac{\sqrt{2i}}{1+i}x$ and $\vec{v}_2 = \myvec{1\\ \frac{\sqrt{2i}}{1+i}}$.
+
 \begin{align}
 \lambda_1 &= 1 - \sqrt{2i}, \quad \vec{v}_1 = \myvec{1\\ -\,\frac{\sqrt{2i}}{1+i}}\\
 \lambda_2 &= 1 + \sqrt{2i}, \quad \vec{v}_2 = \myvec{1\\ \frac{\sqrt{2i}}{1+i}}
 \end{align}
 
-The Eigen vectors are \textbf{complex and not orthogonal}
+The Eigen vectors are \textbf{complex}
 
 \pagebreak
 
@@ -453,35 +501,32 @@ Here, $\vec{A} = \vec{A}^\top$ but $\vec{A} \ne \vec{A}^*$, so $\vec{A}$ is comp
 
 \begin{align}
 \mydet{
-\myvec{
 1-\lambda & i & 0\\
 i & 1-\lambda & i\\
 0 & i & 1-\lambda
-}
 } = 0
 \end{align}
 
 \begin{align}
-\myvec{
+\mydet{
 1-\lambda & i & 0\\
 i & 1-\lambda & i\\
 0 & i & 1-\lambda
 }
 \xleftrightarrow{R_2 \to R_2 - \frac{i}{1-\lambda} R_1}
-\myvec{
+\mydet{
 1-\lambda & i & 0\\
 0 & \frac{(1-\lambda)^2 + 1}{1-\lambda} & i\\
 0 & i & 1-\lambda
 }
 \xleftrightarrow{R_3 \to R_3 - \frac{i(1-\lambda)}{(1-\lambda)^2 + 1} R_2}
-\myvec{
+\mydet{
 1-\lambda & i & 0\\
 0 & \frac{(1-\lambda)^2 + 1}{1-\lambda} & i\\
 0 & 0 & \frac{(1-\lambda)^3 + 2(1-\lambda)}{(1-\lambda)^2 + 1}
 }
 \end{align}
 
-Now determinant = product of diagonal entries:
 \begin{align}
 (1-\lambda)\Big(\frac{(1-\lambda)^2 + 1}{1-\lambda}\Big)\Big(\frac{(1-\lambda)^3 + 2(1-\lambda)}{(1-\lambda)^2 + 1}\Big) = 0
 \end{align}
@@ -498,34 +543,101 @@ Hence eigenvalues are:
 \lambda_3 = 1 - i\sqrt{2}
 \end{align}
 
-\textbf{Conclusion :}
-For a complex symmetric matrix,
-\begin{enumerate}
-  \item Eigenvalues may be complex.
-  \item Eigenvectors corresponding to distinct eigenvalues are not necessarily orthogonal.
-\end{enumerate}
+\textbf{Finding Eigenvectors}
 
-We solve \((\vec{A}-\lambda\vec{I})\vec{v}=\vec{0}\) for each eigenvalue.
+\textbf{For } $\lambda_1 = 1$:
+\begin{align}
+(\vec{A}-\vec{I})\vec{v}=0\\
+\myvec{0 & i & 0\\ i & 0 & i\\ 0 & i & 0}\myvec{x\\y\\z}=\myvec{0\\0\\0}
+\end{align}
+\begin{align}
+  \myaugvec{3}{0 & i & 0 & 0\\ i & 0 & i & 0\\ 0 & i & 0 & 0}
+\xleftrightarrow{R_2 \leftrightarrow R_1}
+  \myaugvec{3}{i & 0 & i & 0\\ 0 & i & 0 & 0\\ 0 & i & 0 & 0}
+\xleftrightarrow{R_3 \to R_3 - R_2}
+  \myaugvec{3}{i & 0 & i & 0\\ 0 & i & 0 & 0\\ 0 & 0 & 0 & 0}
+\end{align}
+Hence $y=0,\ z=-x \Rightarrow \vec{v}_1 = \myvec{1\\0\\-1}$.
 
-\bigskip
+\pagebreak 
 
-\textbf{Eigenvalue } \(\lambda_1 = 1\).
+\textbf{For} \(\lambda_2 = 1 + i\sqrt{2}\)
 
 \begin{align}
-\vec{v}_1 &= \myvec{1\\0\\-1}
+\vec{A} - \lambda_2 \vec{I} 
+&= \myvec{
+ -i\sqrt{2} & i & 0\\
+ i & -i\sqrt{2} & i\\
+ 0 & i & -i\sqrt{2}
+}
 \end{align}
 
-\bigskip
+Forming the augmented matrix :
+\begin{align}
+\myaugvec{3}{
+ -i\sqrt{2} & i & 0 & 0\\
+ i & -i\sqrt{2} & i & 0\\
+ 0 & i & -i\sqrt{2} & 0
+}
+\xleftrightarrow{R_2 \to R_2 - \frac{i}{-i\sqrt{2}} R_1}
+\myaugvec{3}{
+ -i\sqrt{2} & i & 0 & 0\\
+ 0 & i\brak{\frac{1}{\sqrt{2}} - \sqrt{2}} & i & 0\\
+ 0 & i & -i\sqrt{2} & 0
+}
+\end{align}
 
-\textbf{Eigenvalue } \(\lambda_2 = 1 + i\sqrt{2}\).
+\begin{align}
+\xleftrightarrow{R_3 \to R_3 - \frac{i}{i\brak{\frac{1}{\sqrt{2}} - \sqrt{2}}} R_2}
+\myaugvec{3}{
+ -i\sqrt{2} & i & 0 & 0\\
+ 0 & i\brak{\frac{1}{\sqrt{2}} - \sqrt{2}} & i & 0\\
+ 0 & 0 & 0 & 0
+}
+\end{align}
+
+Let \(x = z\). From the first two equations, \(y = \sqrt{2}x\).
 
 \begin{align}
 \vec{v}_2 &= \myvec{1\\[2pt]\sqrt{2}\\[2pt]1}
 \end{align}
 
-\pagebreak
+\textbf{For} \(\lambda_3 = 1 - i\sqrt{2}\)
 
-\textbf{Eigenvalue } \(\lambda_3 = 1 - i\sqrt{2}\)
+\begin{align}
+\vec{A} - \lambda_3 \vec{I} 
+&=  \myvec{
+ i\sqrt{2} & i & 0\\
+ i & i\sqrt{2} & i\\
+ 0 & i & i\sqrt{2}
+}
+\end{align}
+
+Forming the augmented matrix:
+\begin{align}
+\myaugvec{3}{
+ i\sqrt{2} & i & 0 & 0\\
+ i & i\sqrt{2} & i & 0\\
+ 0 & i & i\sqrt{2} & 0
+}
+\xleftrightarrow{R_2 \to R_2 - \frac{i}{i\sqrt{2}}R_1}
+\myaugvec{3}{
+ i\sqrt{2} & i & 0 & 0\\
+ 0 & i\brak{\sqrt{2} - \frac{1}{\sqrt{2}}} & i & 0\\
+ 0 & i & i\sqrt{2} & 0
+}
+\end{align}
+
+\begin{align}
+\xleftrightarrow{R_3 \to R_3 - \frac{i}{i\brak{\sqrt{2} - \frac{1}{\sqrt{2}}}} R_2}
+\myaugvec{3}{
+ i\sqrt{2} & i & 0 & 0\\
+ 0 & i\brak{\sqrt{2} - \frac{1}{\sqrt{2}}} & i & 0\\
+ 0 & 0 & 0 & 0
+}
+\end{align}
+
+Hence, \(y = -\sqrt{2}x\), \(x = z\).
 
 \begin{align}
 \vec{v}_3 &= \myvec{1\\[2pt]-\sqrt{2}\\[2pt]1}
@@ -533,13 +645,14 @@ We solve \((\vec{A}-\lambda\vec{I})\vec{v}=\vec{0}\) for each eigenvalue.
 
 \bigskip
 
-\textbf{Summary:}
+Thus, by Gaussian elimination:
 \begin{align}
-\lambda_1 &= 1,\quad \vec{v}_1 = \myvec{1\\0\\-1},\\
-\lambda_2 &= 1 + i\sqrt{2},\quad \vec{v}_2 = \myvec{1\\\sqrt{2}\\1},\\
-\lambda_3 &= 1 - i\sqrt{2},\quad \vec{v}_3 = \myvec{1\\-\,\sqrt{2}\\1}.
+\lambda_1 &= 1, & \vec{v}_1 &= \myvec{1\\0\\-1}\\
+\lambda_2 &= 1 + i\sqrt{2}, & \vec{v}_2 &= \myvec{1\\\sqrt{2}\\1}\\
+\lambda_3 &= 1 - i\sqrt{2}, & \vec{v}_3 &= \myvec{1\\-\sqrt{2}\\1}
 \end{align}
 
-Some of the eigen values are complex but the eigen vectors are real.
+Some of the eigen values are complex but the eigen vectors are \textbf{real}.
+
 
 \end{document}
