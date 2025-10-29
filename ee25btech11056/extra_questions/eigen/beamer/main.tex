@@ -769,4 +769,45 @@ Some of the eigen values are complex but the eigen vectors are \textbf{real}.
 
 \end{frame}
 
+\begin{frame}{Examples}
+
+\textbf{(c)}
+
+\begin{align}
+\vec{A} &= \myvec{1 & i \\ 0 & 2} \\[2mm]
+\mydet{\vec{A} - \lambda \vec{I}} 
+&= \mydet{1-\lambda & i \\ 0 & 2-\lambda}
+= (1-\lambda)(2-\lambda) \\[2mm]
+\lambda_1 &= 1, \quad \lambda_2 = 2
+\end{align}
+
+For $\lambda_1 = 1$,
+\begin{align}
+\vec{A} - \lambda_1 \vec{I} &= \myvec{0 & i \\ 0 & 1} \\
+i y &= 0 \Rightarrow y = 0 \\[1mm]
+\vec{v_1} &= \myvec{1 \\ 0}
+\end{align}
+
+\end{frame}
+
+\begin{frame}{Examples}
+
+For $\lambda_2 = 2$,
+\begin{align}
+\vec{A} - \lambda_2 \vec{I} &= \myvec{-1 & i \\ 0 & 0}
+\xleftrightarrow{R_1/(-1)}
+\myvec{1 & -i \\ 0 & 0} \\[1mm]
+x &= i y \\[1mm]
+\vec{v_2} &= \myvec{i \\ 1}
+\end{align}
+
+Check orthogonality:
+\begin{align}
+\vec{v_1}^*\vec{v_2} \ne 0
+\end{align}
+
+Hence, the eigenvectors are not orthogonal.
+
+\end{frame}
+
 \end{document}
